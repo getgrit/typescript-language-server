@@ -396,8 +396,16 @@ export class LspServer {
     }
 
     async didRequestDiagnostics(params: lsp.DocumentDiagnosticParams): Promise<lsp.FullDocumentDiagnosticReport> {
-        console.log("params", params.textDocument);
-        await this.requestDiagnostics();
+        // const res = await this.requestDiagnostics();
+        const geterrTokenSource = new lsp.CancellationTokenSource();
+        this.diagnosticsTokenSource = geterrTokenSource;
+
+        const req = await this.tspClient.requestGeterr({ delay: 0, files: [params.textDocument.uri] },
+            this.diagnosticsTokenSource.token);
+
+        console.log("params", params.textDocument, req);
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
         return {
             kind: lsp.DocumentDiagnosticReportKind.Full,
             items: []
@@ -1266,6 +1274,7 @@ export class LspServer {
         if (event.event === EventName.semanticDiag || event.event === EventName.syntaxDiag || event.event === EventName.suggestionDiag) {
             const diagnosticEvent = event as ts.server.protocol.DiagnosticEvent;
             if (diagnosticEvent.body?.diagnostics) {
+                console.log("got an event!", diagnosticEvent);
                 const { file, diagnostics } = diagnosticEvent.body;
                 this.diagnosticQueue?.updateDiagnostics(getDignosticsKind(event), file, diagnostics);
             }
