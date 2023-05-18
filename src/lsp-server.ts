@@ -395,6 +395,15 @@ export class LspServer {
         }
     }
 
+    async didRequestDiagnostics(params: lsp.DocumentDiagnosticParams): Promise<lsp.FullDocumentDiagnosticReport> {
+        console.log("params", params.textDocument);
+        await this.requestDiagnostics();
+        return {
+            kind: lsp.DocumentDiagnosticReportKind.Full,
+            items: []
+        };
+    }
+
     didOpenTextDocument(params: lsp.DidOpenTextDocumentParams): void {
         const file = uriToPath(params.textDocument.uri);
         this.logger.log('onDidOpenTextDocument', params, file);

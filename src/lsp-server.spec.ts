@@ -944,6 +944,25 @@ describe('diagnostics', () => {
         const fileDiagnostics = diagnosticsForThisFile!.diagnostics;
         expect(fileDiagnostics).toHaveLength(0);
     });
+
+    it.only('supports pulling diagnostics', async () => {
+        const doc = {
+            uri: uri('diagnosticsBar.ts'),
+            languageId: 'typescript',
+            version: 1,
+            text: `
+        export function foo(): void {
+          missing('test')
+        }
+      `,
+        };
+
+        const diagnosticReport = await server.didRequestDiagnostics({
+            textDocument: doc
+        });
+        expect(diagnosticReport.items).toHaveLength(1);
+        expect("Cannot find name 'missing'.").toBe(diagnosticReport.items[0].message);
+    });
 });
 
 describe('document symbol', () => {

@@ -56,6 +56,7 @@ export function createLspConnection(options: LspConnectionOptions): lsp.Connecti
     connection.onSignatureHelp(server.signatureHelp.bind(server));
     connection.onWorkspaceSymbol(server.workspaceSymbol.bind(server));
     connection.onFoldingRanges(server.foldingRanges.bind(server));
+    connection.languages.diagnostics.on(server.didRequestDiagnostics.bind(server));
     connection.languages.callHierarchy.onPrepare(server.prepareCallHierarchy.bind(server));
     connection.languages.callHierarchy.onIncomingCalls(server.callHierarchyIncomingCalls.bind(server));
     connection.languages.callHierarchy.onOutgoingCalls(server.callHierarchyOutgoingCalls.bind(server));
