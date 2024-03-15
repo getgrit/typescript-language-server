@@ -1,6 +1,6 @@
 import Button from './button'
 
-export default function App() {
+export function App() {
   return (
     <Button title />
   )

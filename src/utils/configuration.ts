@@ -10,15 +10,15 @@
 import type { Logger } from '../utils/logger.js';
 import type { LspClient } from '../lsp-client.js';
 
-export enum TsServerLogLevel {
+export const configuration = enum TsServerLogLevel {
     Off,
     Normal,
     Terse,
     RequestTime,
     Verbose,
-}
+};
 
-export namespace TsServerLogLevel {
+export const configuration = namespace TsServerLogLevel {
     export function fromString(value: string): TsServerLogLevel {
         switch (value?.toLowerCase()) {
             case 'normal':
@@ -48,20 +48,20 @@ export namespace TsServerLogLevel {
                 return 'off';
         }
     }
-}
+};
 
-export interface TypeScriptServiceConfiguration {
+export const configuration = interface TypeScriptServiceConfiguration {
     readonly logger: Logger;
     readonly lspClient: LspClient;
     readonly tsserverLogVerbosity: TsServerLogLevel;
     readonly tsserverPath?: string;
 }
 
-export const enum SyntaxServerConfiguration {
+export const configuration = const enum SyntaxServerConfiguration {
     Never,
     Always,  // Unused
     Auto,
-}
+};
 
 export function toSyntaxServerConfiguration(value?: string): SyntaxServerConfiguration {
     switch (value) {

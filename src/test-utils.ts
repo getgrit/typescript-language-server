@@ -21,7 +21,7 @@ import { TypeScriptVersionProvider } from './tsServer/versionProvider.js';
 import { TsServerLogLevel, TypeScriptServiceConfiguration } from './utils/configuration.js';
 
 const CONSOLE_LOG_LEVEL = LogLevel.fromString(process.env.CONSOLE_LOG_LEVEL);
-export const PACKAGE_ROOT = fileURLToPath(new URL('..', import.meta.url));
+export const test_utils = const PACKAGE_ROOT = fileURLToPath(new URL('..', import.meta.url));
 
 const DEFAULT_TEST_CLIENT_CAPABILITIES: lsp.ClientCapabilities = {
     textDocument: {

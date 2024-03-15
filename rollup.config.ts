@@ -4,7 +4,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonJS from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 
-export default defineConfig({
+export const rollup = defineConfig({
     input: 'src/cli.ts',
     output: [
         {

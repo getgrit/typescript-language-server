@@ -28,4 +28,4 @@ const config: Config = {
     verbose: true,
 };
 
-export default config;
+export const jest = config;

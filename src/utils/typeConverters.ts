@@ -8,20 +8,20 @@
 import * as lsp from 'vscode-languageserver-protocol';
 import type { ts } from '../ts-protocol.js';
 
-export namespace Range {
-    export const fromTextSpan = (span: ts.server.protocol.TextSpan): lsp.Range => fromLocations(span.start, span.end);
+export const typeConverters = namespace Range {
+    export const typeConverters = const fromTextSpan = (span: ts.server.protocol.TextSpan): lsp.Range => fromLocations(span.start, span.end);
 
-    export const toTextSpan = (range: lsp.Range): ts.server.protocol.TextSpan => ({
+    export const typeConverters = const toTextSpan = (range: lsp.Range): ts.server.protocol.TextSpan => ({
         start: Position.toLocation(range.start),
         end: Position.toLocation(range.end),
     });
 
-    export const fromLocations = (start: ts.server.protocol.Location, end: ts.server.protocol.Location): lsp.Range =>
+    export const typeConverters = const fromLocations = (start: ts.server.protocol.Location, end: ts.server.protocol.Location): lsp.Range =>
         lsp.Range.create(
             Math.max(0, start.line - 1), Math.max(start.offset - 1, 0),
             Math.max(0, end.line - 1), Math.max(0, end.offset - 1));
 
-    export const toFileRangeRequestArgs = (file: string, range: lsp.Range): ts.server.protocol.FileRangeRequestArgs => ({
+    export const typeConverters = const toFileRangeRequestArgs = (file: string, range: lsp.Range): ts.server.protocol.FileRangeRequestArgs => ({
         file,
         startLine: range.start.line + 1,
         startOffset: range.start.character + 1,
@@ -29,7 +29,7 @@ export namespace Range {
         endOffset: range.end.character + 1,
     });
 
-    export const toFormattingRequestArgs = (file: string, range: lsp.Range): ts.server.protocol.FormatRequestArgs => ({
+    export const typeConverters = const toFormattingRequestArgs = (file: string, range: lsp.Range): ts.server.protocol.FormatRequestArgs => ({
         file,
         line: range.start.line + 1,
         offset: range.start.character + 1,
@@ -54,10 +54,10 @@ export namespace Range {
         const end = Position.Max(other.end, one.end);
         return lsp.Range.create(start, end);
     }
-}
+};
 
-export namespace Position {
-    export const fromLocation = (tslocation: ts.server.protocol.Location): lsp.Position => {
+export const typeConverters = namespace Position {
+    export const typeConverters = const fromLocation = (tslocation: ts.server.protocol.Location): lsp.Position => {
         // Clamping on the low side to 0 since Typescript returns 0, 0 when creating new file
         // even though position is supposed to be 1-based.
         return {
@@ -66,19 +66,19 @@ export namespace Position {
         };
     };
 
-    export const toLocation = (position: lsp.Position): ts.server.protocol.Location => ({
+    export const typeConverters = const toLocation = (position: lsp.Position): ts.server.protocol.Location => ({
         line: position.line + 1,
         offset: position.character + 1,
     });
 
-    export const toFileLocationRequestArgs = (file: string, position: lsp.Position): ts.server.protocol.FileLocationRequestArgs => ({
+    export const typeConverters = const toFileLocationRequestArgs = (file: string, position: lsp.Position): ts.server.protocol.FileLocationRequestArgs => ({
         file,
         line: position.line + 1,
         offset: position.character + 1,
     });
 
-    export function Min(): undefined;
-    export function Min(...positions: lsp.Position[]): lsp.Position;
+    export const typeConverters = function Min(): undefined;
+    export const typeConverters = function Min(...positions: lsp.Position[]): lsp.Position;;
     export function Min(...positions: lsp.Position[]): lsp.Position | undefined {
         if (!positions.length) {
             return undefined;
@@ -100,8 +100,8 @@ export namespace Position {
         }
         return one.character < other.character;
     }
-    export function Max(): undefined;
-    export function Max(...positions: lsp.Position[]): lsp.Position;
+    export const typeConverters = function Max(): undefined;
+    export const typeConverters = function Max(...positions: lsp.Position[]): lsp.Position;;
     export function Max(...positions: lsp.Position[]): lsp.Position | undefined {
         if (!positions.length) {
             return undefined;
@@ -126,9 +126,9 @@ export namespace Position {
         }
         return one.character <= other.character;
     }
-}
+};
 
-export namespace Location {
-    export const fromTextSpan = (resource: lsp.DocumentUri, tsTextSpan: ts.server.protocol.TextSpan): lsp.Location =>
+export const typeConverters = namespace Location {
+    export const typeConverters = const fromTextSpan = (resource: lsp.DocumentUri, tsTextSpan: ts.server.protocol.TextSpan): lsp.Location =>
         lsp.Location.create(resource, Range.fromTextSpan(tsTextSpan));
-}
+};

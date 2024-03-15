@@ -61,7 +61,7 @@ const DEFAULT_WORKSPACE_CONFIGURATION: WorkspaceConfiguration = {
     implicitProjectConfiguration: DEFAULT_IMPLICIT_PROJECT_CONFIGURATION,
 };
 
-export interface WorkspaceConfiguration {
+export const configuration_manager = interface WorkspaceConfiguration {
     javascript?: WorkspaceConfigurationLanguageOptions;
     typescript?: WorkspaceConfigurationLanguageOptions;
     completions?: WorkspaceConfigurationCompletionOptions;
@@ -69,12 +69,12 @@ export interface WorkspaceConfiguration {
     implicitProjectConfiguration?: WorkspaceConfigurationImplicitProjectConfigurationOptions;
 }
 
-export interface WorkspaceConfigurationLanguageOptions {
+export const configuration_manager = interface WorkspaceConfigurationLanguageOptions {
     format?: ts.server.protocol.FormatCodeSettings;
     inlayHints?: TypeScriptInlayHintsPreferences;
 }
 
-export interface WorkspaceConfigurationImplicitProjectConfigurationOptions {
+export const configuration_manager = interface WorkspaceConfigurationImplicitProjectConfigurationOptions {
     checkJs?: boolean;
     experimentalDecorators?: boolean;
     module?: string;
@@ -84,7 +84,7 @@ export interface WorkspaceConfigurationImplicitProjectConfigurationOptions {
 }
 
 /* eslint-disable @typescript-eslint/indent */
-export type TypeScriptInlayHintsPreferences = Pick<
+export const configuration_manager = type TypeScriptInlayHintsPreferences = Pick<
     ts.server.protocol.UserPreferences,
     'includeInlayParameterNameHints' |
     'includeInlayParameterNameHintsWhenArgumentMatchesName' |
@@ -101,9 +101,9 @@ interface WorkspaceConfigurationDiagnosticsOptions {
     ignoredCodes?: number[];
 }
 
-export interface WorkspaceConfigurationCompletionOptions {
+export const configuration_manager = interface WorkspaceConfigurationCompletionOptions {
     completeFunctionCalls?: boolean;
-}
+};
 
 export class ConfigurationManager {
     public tsPreferences: Required<ts.server.protocol.UserPreferences> = deepmerge({}, DEFAULT_TSSERVER_PREFERENCES);

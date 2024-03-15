@@ -11,7 +11,7 @@
 
 import type { ts } from '../ts-protocol.js';
 
-export enum RequestQueueingType {
+export const requestQueue = enum RequestQueueingType {
     /**
      * Normal request that is executed in order.
      */
@@ -29,9 +29,9 @@ export enum RequestQueueingType {
      * in the request queue.
      */
     Fence = 3,
-}
+};
 
-export interface RequestItem {
+export const requestQueue = interface RequestItem {
     readonly request: ts.server.protocol.Request;
     readonly expectsResponse: boolean;
     readonly isAsync: boolean;

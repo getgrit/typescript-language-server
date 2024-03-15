@@ -11,10 +11,10 @@
 
 import type * as lsp from 'vscode-languageserver/node.js';
 
-export const enum MarkdownStringTextNewlineStyle {
+export const MarkdownString = const enum MarkdownStringTextNewlineStyle {
     Paragraph = 0,
     Break = 1,
-}
+};
 
 export class MarkdownString {
     constructor(public value = '') {}

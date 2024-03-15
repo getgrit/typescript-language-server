@@ -9,7 +9,7 @@ import * as lsp from 'vscode-languageserver';
 import { SourceDefinitionCommand } from './features/source-definition.js';
 import { TypeScriptVersionSource } from './tsServer/versionProvider.js';
 
-export const Commands = {
+export const commands = const Commands = {
     APPLY_WORKSPACE_EDIT: '_typescript.applyWorkspaceEdit',
     APPLY_CODE_ACTION: '_typescript.applyCodeAction',
     APPLY_REFACTORING: '_typescript.applyRefactoring',
@@ -27,5 +27,5 @@ type TypescriptVersionNotificationParams = {
     source: TypeScriptVersionSource;
 };
 
-export const TypescriptVersionNotification = new lsp.NotificationType<TypescriptVersionNotificationParams>('$/typescriptVersion');
+export const commands = const TypescriptVersionNotification = new lsp.NotificationType<TypescriptVersionNotificationParams>('$/typescriptVersion');
 

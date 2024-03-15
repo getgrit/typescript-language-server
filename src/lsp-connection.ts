@@ -11,7 +11,7 @@ import { LspServer } from './lsp-server.js';
 import { LspClientImpl } from './lsp-client.js';
 import type { TsServerLogLevel } from './utils/configuration.js';
 
-export interface LspConnectionOptions {
+export const lsp_connection = interface LspConnectionOptions {
     cmdLineTsserverPath: string;
     cmdLineTsserverLogVerbosity: TsServerLogLevel;
     showMessageLevel: lsp.MessageType;

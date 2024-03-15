@@ -14,14 +14,14 @@
 import lsp from 'vscode-languageserver';
 import type { LspClient } from '../lsp-client.js';
 
-export enum LogLevel {
+export const logger = enum LogLevel {
     Error,
     Warning,
     Info,
     Log,
-}
+};
 
-export namespace LogLevel {
+export const logger = namespace LogLevel {
     export function fromString(value?: string): LogLevel {
         switch (value?.toLowerCase()) {
             case 'log':
@@ -48,11 +48,11 @@ export namespace LogLevel {
                 return 'log';
         }
     }
-}
+};
 
 type TraceLevel = 'Trace' | 'Info' | 'Error';
 
-export interface Logger {
+export const logger = interface Logger {
     error(...args: any[]): void;
     warn(...args: any[]): void;
     info(...args: any[]): void;
@@ -65,7 +65,7 @@ export interface Logger {
      * Logs the arguments regardless of the verbosity level in a trace-specific format.
      */
     trace(level: TraceLevel, message: string, data?: any): void;
-}
+};
 
 export class LspClientLogger implements Logger {
     constructor(

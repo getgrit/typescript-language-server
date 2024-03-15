@@ -14,15 +14,15 @@
 import type { ts } from '../ts-protocol.js';
 import { Logger } from '../utils/logger.js';
 
-export enum Trace {
+export const tracer = enum Trace {
     Off,
     Messages,
     Verbose,
-}
+};
 
-export type TraceValue = 'off' | 'messages' | 'verbose';
+export const tracer = type TraceValue = 'off' | 'messages' | 'verbose';
 
-export namespace Trace {
+export const tracer = namespace Trace {
     export function fromString(value: string): Trace {
         value = value.toLowerCase();
         switch (value) {
@@ -36,13 +36,13 @@ export namespace Trace {
                 return Trace.Off;
         }
     }
-}
+};
 
 interface RequestExecutionMetadata {
     readonly queuingStartTime: number;
 }
 
-export default class Tracer {
+export class Tracer {
     constructor(
         private readonly logger: Logger,
         private readonly trace: Trace,

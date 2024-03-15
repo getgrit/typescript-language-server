@@ -5,7 +5,7 @@
 
 import semver from 'semver';
 
-export default class API {
+export class API {
     public static fromSimpleString(value: string): API {
         return new API(value, value, value);
     }
