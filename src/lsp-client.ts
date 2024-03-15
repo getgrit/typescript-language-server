@@ -10,12 +10,12 @@ import { MessageType } from 'vscode-languageserver';
 import { attachWorkDone } from 'vscode-languageserver/lib/common/progress.js';
 import { TypeScriptRenameRequest } from './ts-protocol.js';
 
-export interface WithProgressOptions {
+export const lsp_client = interface WithProgressOptions {
     message: string;
     reporter: lsp.WorkDoneProgressReporter;
 }
 
-export interface LspClient {
+export const lsp_client = interface LspClient {
     createProgressReporter(token?: lsp.CancellationToken, workDoneProgress?: lsp.WorkDoneProgressReporter): Promise<lsp.WorkDoneProgressReporter>;
     withProgress<R>(options: WithProgressOptions, task: (progress: lsp.WorkDoneProgressReporter) => Promise<R>): Promise<R>;
     publishDiagnostics(args: lsp.PublishDiagnosticsParams): void;
@@ -24,7 +24,7 @@ export interface LspClient {
     applyWorkspaceEdit(args: lsp.ApplyWorkspaceEditParams): Promise<lsp.ApplyWorkspaceEditResult>;
     rename(args: lsp.TextDocumentPositionParams): Promise<any>;
     sendNotification<P>(type: lsp.NotificationType<P>, params: P): Promise<void>;
-}
+};
 
 // Hack around the LSP library that makes it otherwise impossible to differentiate between Null and Client-initiated reporter.
 const nullProgressReporter = attachWorkDone(undefined as any, /* params */ undefined);

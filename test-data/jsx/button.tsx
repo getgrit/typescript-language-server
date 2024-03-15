@@ -4,4 +4,4 @@ const Button: React.FC<{ title: string }> = ({ title }) => {
   )
 }
 
-export default Button
+export const button = Button;

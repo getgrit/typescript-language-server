@@ -44,7 +44,7 @@ const removeUnusedImportsCommand: OrganizeImportsCommand = {
     mode: OrganizeImportsMode.RemoveUnused,
 };
 
-export const organizeImportsCommands = [
+export const organize_imports = const organizeImportsCommands = [
     organizeImportsCommand,
     sortImportsCommand,
     removeUnusedImportsCommand,

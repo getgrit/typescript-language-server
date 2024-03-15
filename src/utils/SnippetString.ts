@@ -1,4 +1,4 @@
-export default class SnippetString {
+export class SnippetString {
     public static isSnippetString(thing: any): thing is SnippetString {
         if (thing instanceof SnippetString) {
             return true;

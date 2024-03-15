@@ -18,11 +18,11 @@ import API from '../utils/api.js';
 import { findPathToModule } from '../utils/modules-resolver.js';
 import type { Logger } from '../utils/logger.js';
 
-export const enum TypeScriptVersionSource {
+export const versionProvider = const enum TypeScriptVersionSource {
     Bundled = 'bundled',
     UserSetting = 'user-setting',
     Workspace = 'workspace',
-}
+};
 
 export class TypeScriptVersion {
     private _api: API | null | undefined;
@@ -99,7 +99,7 @@ export class TypeScriptVersion {
     }
 }
 
-export const MODULE_FOLDERS = ['node_modules/typescript/lib', '.vscode/pnpify/typescript/lib', '.yarn/sdks/typescript/lib'];
+export const versionProvider = const MODULE_FOLDERS = ['node_modules/typescript/lib', '.vscode/pnpify/typescript/lib', '.yarn/sdks/typescript/lib'];
 
 export class TypeScriptVersionProvider {
     public constructor(private userTsserverPath: string | undefined, private logger: Logger) {}

@@ -13,14 +13,14 @@ import fs from 'node:fs';
 import { temporaryFile } from 'tempy';
 import Tracer from './tracer.js';
 
-export interface OngoingRequestCanceller {
+export const cancellation = interface OngoingRequestCanceller {
     readonly cancellationPipeName: string | undefined;
     tryCancelOngoingRequest(seq: number): boolean;
 }
 
-export interface OngoingRequestCancellerFactory {
+export const cancellation = interface OngoingRequestCancellerFactory {
     create(serverId: string, tracer: Tracer): OngoingRequestCanceller;
-}
+};
 
 const noopRequestCanceller = new class implements OngoingRequestCanceller {
     public readonly cancellationPipeName = undefined;
@@ -30,7 +30,7 @@ const noopRequestCanceller = new class implements OngoingRequestCanceller {
     }
 };
 
-export const noopRequestCancellerFactory = new class implements OngoingRequestCancellerFactory {
+export const cancellation = const noopRequestCancellerFactory = new class implements OngoingRequestCancellerFactory {
     create(_serverId: string, _tracer: Tracer): OngoingRequestCanceller {
         return noopRequestCanceller;
     }
@@ -60,7 +60,7 @@ export class NodeRequestCanceller implements OngoingRequestCanceller {
     }
 }
 
-export const nodeRequestCancellerFactory = new class implements OngoingRequestCancellerFactory {
+export const cancellation = const nodeRequestCancellerFactory = new class implements OngoingRequestCancellerFactory {
     create(serverId: string, tracer: Tracer): OngoingRequestCanceller {
         return new NodeRequestCanceller(serverId, tracer);
     }

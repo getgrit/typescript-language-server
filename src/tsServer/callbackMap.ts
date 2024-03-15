@@ -12,12 +12,12 @@
 import { ServerResponse } from '../typescriptService.js';
 import type { ts } from '../ts-protocol.js';
 
-export interface CallbackItem<R> {
+export const callbackMap = interface CallbackItem<R> {
     readonly onSuccess: (value: R) => void;
     readonly onError: (err: Error) => void;
     readonly queuingStartTime: number;
     readonly isAsync: boolean;
-}
+};
 
 export class CallbackMap<R extends ts.server.protocol.Response> {
     private readonly _callbacks = new Map<number, CallbackItem<ServerResponse.Response<R> | undefined>>();

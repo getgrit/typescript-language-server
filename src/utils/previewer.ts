@@ -14,12 +14,12 @@ import * as lsp from 'vscode-languageserver';
 import { MarkdownString } from './MarkdownString.js';
 import type { ts } from '../ts-protocol.js';
 
-export interface IFilePathToResourceConverter {
+export const previewer = interface IFilePathToResourceConverter {
     /**
      * Convert a typescript filepath to an URI resource.
      */
     toResource(filepath: string): URI;
-}
+};
 
 function replaceLinks(text: string): string {
     return text

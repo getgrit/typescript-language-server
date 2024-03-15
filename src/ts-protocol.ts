@@ -12,15 +12,15 @@ import lsp from 'vscode-languageserver-protocol';
 import type ts from 'typescript/lib/tsserverlibrary.js';
 import type { TraceValue } from './tsServer/tracer.js';
 
-export type { ts };
+export const ts_protocol = ;
 
-export namespace TypeScriptRenameRequest {
-    export const type = new lsp.RequestType<lsp.TextDocumentPositionParams, void, void>('_typescript.rename');
-}
+export const ts_protocol = namespace TypeScriptRenameRequest {
+    export const ts_protocol = const type = new lsp.RequestType<lsp.TextDocumentPositionParams, void, void>('_typescript.rename');
+};
 
 // START: Duplicated from typescript/lib/tsserverlibrary.js since we don't want to depend on typescript at runtime
 
-export enum CommandTypes {
+export const ts_protocol = enum CommandTypes {
     JsxClosingTag = 'jsxClosingTag',
     Brace = 'brace',
     BraceCompletion = 'braceCompletion',
@@ -96,23 +96,23 @@ export enum CommandTypes {
     ProvideCallHierarchyIncomingCalls = 'provideCallHierarchyIncomingCalls',
     ProvideCallHierarchyOutgoingCalls = 'provideCallHierarchyOutgoingCalls',
     ProvideInlayHints = 'provideInlayHints'
-}
+};
 
-export enum HighlightSpanKind {
+export const ts_protocol = enum HighlightSpanKind {
     none = 'none',
     definition = 'definition',
     reference = 'reference',
     writtenReference = 'writtenReference'
-}
+};
 
-export enum JsxEmit {
+export const ts_protocol = enum JsxEmit {
     None = 'None',
     Preserve = 'Preserve',
     ReactNative = 'ReactNative',
     React = 'React'
-}
+};
 
-export enum ModuleKind {
+export const ts_protocol = enum ModuleKind {
     None = 'None',
     CommonJS = 'CommonJS',
     AMD = 'AMD',
@@ -121,20 +121,20 @@ export enum ModuleKind {
     ES6 = 'ES6',
     ES2015 = 'ES2015',
     ESNext = 'ESNext'
-}
+};
 
-export enum ModuleResolutionKind {
+export const ts_protocol = enum ModuleResolutionKind {
     Classic = 'Classic',
     Node = 'Node'
-}
+};
 
-export enum SemicolonPreference {
+export const ts_protocol = enum SemicolonPreference {
     Ignore = 'ignore',
     Insert = 'insert',
     Remove = 'remove'
-}
+};
 
-export enum ScriptElementKind {
+export const ts_protocol = enum ScriptElementKind {
     unknown = '',
     warning = 'warning',
     keyword = 'keyword',
@@ -173,9 +173,9 @@ export enum ScriptElementKind {
     link = 'link',
     linkName = 'link name',
     linkText = 'link text'
-}
+};
 
-export enum ScriptElementKindModifier {
+export const ts_protocol = enum ScriptElementKindModifier {
     none = '',
     publicMemberModifier = 'public',
     privateMemberModifier = 'private',
@@ -198,9 +198,9 @@ export enum ScriptElementKindModifier {
     dctsModifier = '.d.cts',
     ctsModifier = '.cts',
     cjsModifier = '.cjs'
-}
+};
 
-export enum ScriptTarget {
+export const ts_protocol = enum ScriptTarget {
     ES3 = 'ES3',
     ES5 = 'ES5',
     ES6 = 'ES6',
@@ -213,9 +213,9 @@ export enum ScriptTarget {
     ES2021 = 'ES2021',
     ES2022 = 'ES2022',
     ESNext = 'ESNext'
-}
+};
 
-export enum SymbolDisplayPartKind {
+export const ts_protocol = enum SymbolDisplayPartKind {
     aliasName = 0,
     className = 1,
     enumName = 2,
@@ -241,17 +241,17 @@ export enum SymbolDisplayPartKind {
     link = 22,
     linkName = 23,
     linkText = 24
-}
+};
 
-export enum OrganizeImportsMode {
+export const ts_protocol = enum OrganizeImportsMode {
     All = 'All',
     SortAndCombine = 'SortAndCombine',
     RemoveUnused = 'RemoveUnused',
-}
+};
 
 // END: Duplicated from typescript/lib/tsserverlibrary.js since we don't want to depend on typescript at runtime
 
-export const enum EventName {
+export const ts_protocol = const enum EventName {
     syntaxDiag = 'syntaxDiag',
     semanticDiag = 'semanticDiag',
     suggestionDiag = 'suggestionDiag',
@@ -265,7 +265,7 @@ export const enum EventName {
     surveyReady = 'surveyReady',
     projectLoadingStart = 'projectLoadingStart',
     projectLoadingFinish = 'projectLoadingFinish',
-}
+};
 
 export class KindModifiers {
     public static readonly optional = 'optional';
@@ -319,7 +319,7 @@ export function toSymbolDisplayPartKind(kind: string): ts.SymbolDisplayPartKind 
     return SYMBOL_DISPLAY_PART_KIND_MAP[kind as keyof typeof ts.SymbolDisplayPartKind];
 }
 
-export interface SupportedFeatures {
+export const ts_protocol = interface SupportedFeatures {
     codeActionDisabledSupport?: boolean;
     completionCommitCharactersSupport?: boolean;
     completionInsertReplaceSupport?: boolean;
@@ -330,12 +330,12 @@ export interface SupportedFeatures {
     diagnosticsTagSupport?: boolean;
 }
 
-export interface TypeScriptPlugin {
+export const ts_protocol = interface TypeScriptPlugin {
     name: string;
     location: string;
 }
 
-export interface TypeScriptInitializationOptions {
+export const ts_protocol = interface TypeScriptInitializationOptions {
     completionDisableFilterText?: boolean;
     disableAutomaticTypingAcquisition?: boolean;
     hostInfo?: string;
@@ -387,6 +387,6 @@ interface TsserverOptions {
     useSyntaxServer?: 'auto' | 'never';
 }
 
-export type TypeScriptInitializeParams = lsp.InitializeParams & {
+export const ts_protocol = type TypeScriptInitializeParams = lsp.InitializeParams & {
     initializationOptions?: Partial<TypeScriptInitializationOptions>;
 };

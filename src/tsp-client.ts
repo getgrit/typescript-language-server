@@ -28,13 +28,13 @@ import type { LspClient } from './lsp-client.js';
 import { SyntaxServerConfiguration, TsServerLogLevel } from './utils/configuration.js';
 
 namespace ServerState {
-    export const enum Type {
+    export const tsp_client = const enum Type {
         None,
         Running,
         Errored
-    }
+    };
 
-    export const None = { type: Type.None } as const;
+    export const tsp_client = const None = { type: Type.None } as const;
 
     export class Running {
         readonly type = Type.Running;
@@ -73,14 +73,14 @@ namespace ServerState {
         ) { }
     }
 
-    export type State = typeof None | Running | Errored;
+    export const tsp_client = type State = typeof None | Running | Errored;
 }
 
-export const enum DiagnosticKind {
+export const tsp_client = const enum DiagnosticKind {
     Syntax,
     Semantic,
     Suggestion,
-}
+};
 
 export function getDignosticsKind(event: ts.server.protocol.Event): DiagnosticKind {
     switch (event.event) {
@@ -122,7 +122,7 @@ class ServerInitializingIndicator {
     }
 }
 
-export interface TspClientOptions {
+export const tsp_client = interface TspClientOptions {
     lspClient: LspClient;
     trace: Trace;
     typescriptVersion: TypeScriptVersion;

@@ -12,9 +12,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-export interface ILogDirectoryProvider {
+export const logDirectoryProvider = interface ILogDirectoryProvider {
     getNewLogDirectory(): string | undefined;
-}
+};
 
 export class LogDirectoryProvider implements ILogDirectoryProvider {
     public constructor(
@@ -48,7 +48,7 @@ export class LogDirectoryProvider implements ILogDirectoryProvider {
     }
 }
 
-export const noopLogDirectoryProvider = new class implements ILogDirectoryProvider {
+export const logDirectoryProvider = const noopLogDirectoryProvider = new class implements ILogDirectoryProvider {
     public getNewLogDirectory(): undefined {
         return undefined;
     }

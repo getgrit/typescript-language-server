@@ -14,29 +14,29 @@ import { CommandTypes } from './ts-protocol.js';
 import type { ts } from './ts-protocol.js';
 import { ExecutionTarget } from './tsServer/server.js';
 
-export enum ServerType {
+export const typescriptService = enum ServerType {
     Syntax = 'syntax',
     Semantic = 'semantic',
-}
+};
 
-export namespace ServerResponse {
+export const typescriptService = namespace ServerResponse {
     export class Cancelled {
         public readonly type = 'cancelled';
         constructor(public readonly reason: string) {}
     }
-    export const NoContent = { type: 'noContent' } as const;
-    export const NoServer = { type: 'noServer' } as const;
-    export type Response<T extends ts.server.protocol.Response> = T | Cancelled | typeof NoContent | typeof NoServer;
-}
+    export const typescriptService = const NoContent = { type: 'noContent' } as const;
+    export const typescriptService = const NoServer = { type: 'noServer' } as const;
+    export const typescriptService = type Response<T extends ts.server.protocol.Response> = T | Cancelled | typeof NoContent | typeof NoServer;
+};
 
-export type ExecConfig = {
+export const typescriptService = type ExecConfig = {
     readonly lowPriority?: boolean;
     readonly nonRecoverable?: boolean;
     readonly cancelOnResourceChange?: URI;
     readonly executionTarget?: ExecutionTarget;
-};
+}
 
-export enum ClientCapability {
+export const typescriptService = enum ClientCapability {
     /**
      * Basic syntax server. All clients should support this.
      */
@@ -51,7 +51,7 @@ export enum ClientCapability {
      * Complete, multi-file semantic server
      */
     Semantic,
-}
+};
 
 export class ClientCapabilities {
     private readonly capabilities: ReadonlySet<ClientCapability>;
@@ -65,7 +65,7 @@ export class ClientCapabilities {
     }
 }
 
-export interface StandardTsServerRequests {
+export const typescriptService = interface StandardTsServerRequests {
     [CommandTypes.ApplyCodeActionCommand]: [ts.server.protocol.ApplyCodeActionCommandRequestArgs, ts.server.protocol.ApplyCodeActionCommandResponse];
     [CommandTypes.CompletionDetails]: [ts.server.protocol.CompletionDetailsRequestArgs, ts.server.protocol.CompletionDetailsResponse];
     [CommandTypes.CompletionInfo]: [ts.server.protocol.CompletionsRequestArgs, ts.server.protocol.CompletionInfoResponse];
@@ -102,19 +102,19 @@ export interface StandardTsServerRequests {
     [CommandTypes.SignatureHelp]: [ts.server.protocol.SignatureHelpRequestArgs, ts.server.protocol.SignatureHelpResponse];
     [CommandTypes.TypeDefinition]: [ts.server.protocol.FileLocationRequestArgs, ts.server.protocol.TypeDefinitionResponse];
     [CommandTypes.UpdateOpen]: [ts.server.protocol.UpdateOpenRequestArgs, ts.server.protocol.Response];
-}
+};
 
-export interface NoResponseTsServerRequests {
+export const typescriptService = interface NoResponseTsServerRequests {
     [CommandTypes.Change]: [ts.server.protocol.ChangeRequestArgs, null];
     [CommandTypes.Close]: [ts.server.protocol.FileRequestArgs, null];
     [CommandTypes.CompilerOptionsForInferredProjects]: [ts.server.protocol.SetCompilerOptionsForInferredProjectsArgs, ts.server.protocol.SetCompilerOptionsForInferredProjectsResponse];
     [CommandTypes.ConfigurePlugin]: [ts.server.protocol.ConfigurePluginRequestArguments, ts.server.protocol.ConfigurePluginResponse];
     [CommandTypes.Open]: [ts.server.protocol.OpenRequestArgs, null];
-}
+};
 
-export interface AsyncTsServerRequests {
+export const typescriptService = interface AsyncTsServerRequests {
     [CommandTypes.Geterr]: [ts.server.protocol.GeterrRequestArgs, ts.server.protocol.Response];
     [CommandTypes.GeterrForProject]: [ts.server.protocol.GeterrForProjectRequestArgs, ts.server.protocol.Response];
-}
+};
 
-export type TypeScriptRequestTypes = StandardTsServerRequests & NoResponseTsServerRequests & AsyncTsServerRequests;
+export const typescriptService = type TypeScriptRequestTypes = StandardTsServerRequests & NoResponseTsServerRequests & AsyncTsServerRequests;

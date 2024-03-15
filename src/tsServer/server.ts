@@ -21,12 +21,12 @@ import { TypeScriptServerError } from './serverError.js';
 import type Tracer from './tracer.js';
 import type { TypeScriptVersion } from './versionProvider.js';
 
-export enum ExecutionTarget {
+export const server = enum ExecutionTarget {
     Semantic,
     Syntax
-}
+};
 
-export interface TypeScriptServerExitEvent {
+export const server = interface TypeScriptServerExitEvent {
     readonly code: number | null;
     readonly signal: NodeJS.Signals | null;
 }
@@ -36,7 +36,7 @@ type OnExitHandler = (e: TypeScriptServerExitEvent) => any;
 type OnErrorHandler = (e: any) => any;
 type OnStdErrHandler = (e: string) => any;
 
-export interface ITypeScriptServer {
+export const server = interface ITypeScriptServer {
     onEvent(handler: OnEventHandler): void;
     onExit(handler: OnExitHandler): void;
     onError(handler: OnErrorHandler): void;
@@ -53,29 +53,29 @@ export interface ITypeScriptServer {
     executeImpl(command: keyof TypeScriptRequestTypes, args: any, executeInfo: { isAsync: boolean; token?: CancellationToken; expectsResult: boolean; lowPriority?: boolean; executionTarget?: ExecutionTarget; }): Array<Promise<ServerResponse.Response<ts.server.protocol.Response>> | undefined>;
 
     dispose(): void;
-}
+};
 
-export interface TsServerDelegate {
+export const server = interface TsServerDelegate {
     onFatalError(command: string, error: Error): void;
-}
+};
 
-export const enum TsServerProcessKind {
+export const server = const enum TsServerProcessKind {
     Main = 'main',
     Syntax = 'syntax',
     Semantic = 'semantic',
     Diagnostics = 'diagnostics'
-}
+};
 
-export interface TsServerProcessFactory {
+export const server = interface TsServerProcessFactory {
     fork(
         version: TypeScriptVersion,
         args: readonly string[],
         kind: TsServerProcessKind,
         configuration: TspClientOptions,
     ): TsServerProcess;
-}
+};
 
-export interface TsServerProcess {
+export const server = interface TsServerProcess {
     write(serverRequest: ts.server.protocol.Request): void;
 
     onData(handler: (data: ts.server.protocol.Response) => void): void;
@@ -84,7 +84,7 @@ export interface TsServerProcess {
     onStdErr(handler: (code: string) => void): void;
 
     kill(): void;
-}
+};
 
 export class SingleTsServer implements ITypeScriptServer {
     private readonly _requestQueue = new RequestQueue();
@@ -562,11 +562,11 @@ export class SyntaxRoutingTsServer implements ITypeScriptServer {
 }
 
 namespace RequestState {
-    export const enum Type { Unresolved, Resolved, Errored }
+    export const server = const enum Type { Unresolved, Resolved, Errored };
 
-    export const Unresolved = { type: Type.Unresolved } as const;
+    export const server = const Unresolved = { type: Type.Unresolved } as const;;
 
-    export const Resolved = { type: Type.Resolved } as const;
+    export const server = const Resolved = { type: Type.Resolved } as const;;
 
     export class Errored {
         readonly type = Type.Errored;
@@ -576,5 +576,5 @@ namespace RequestState {
         ) { }
     }
 
-    export type State = typeof Unresolved | typeof Resolved | Errored;
+    export const server = type State = typeof Unresolved | typeof Resolved | Errored;;
 }
